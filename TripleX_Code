@@ -1,0 +1,90 @@
+/*
+ multi line comment
+//  main.cpp
+//  triplex
+//
+//  Created by psvkaushik on 12/06/21.
+*/
+
+#include <iostream>
+using namespace std;
+#include<ctime>
+
+void PrintIntroduction(int Difficulty)
+{
+    cout << "You are a mercenerary trying to break into a room of level "<<Difficulty;
+    std::cout<<std::endl;
+    std::cout << "You need to enter the correct code to continue....";
+}
+
+bool PlayGame(int Difficulty)
+{
+    //intro to the player
+    
+    PrintIntroduction(Difficulty);
+    // Declare three number code
+    const int CodeA = rand()% Difficulty + Difficulty;
+    const int CodeB = rand()% Difficulty + Difficulty;
+    const int CodeC = rand()% Difficulty + Difficulty;
+    
+    const int CodeSum = CodeA+CodeB+CodeC;
+    const int CodeProduct= CodeA*CodeB*CodeC;
+     
+   
+    //Print sum and prodect to the code
+    std::cout<<std::endl;
+    std::cout<<"There are 3 numbers in the code"<<std::endl;
+    std::cout<<"The numbers in the code add upto: "<<CodeSum<<std::endl;
+    std::cout<<"The product of the 3 numbers in the code is: "<<CodeProduct<<std::endl;
+    
+    int GuessA, GuessB, GuessC;
+    std::cin>>GuessA>>GuessB>>GuessC;
+    std::cout<<"You entered: "<<GuessA<<GuessB<<GuessC;
+    std::cout<<std::endl;
+    
+    int GuessSum,GuessProduct;
+    GuessSum = GuessA+ GuessB +GuessC;
+    GuessProduct = GuessA*GuessB*GuessC;
+    
+    if(GuessSum == CodeSum && GuessProduct == CodeProduct)
+    {
+        std::cout<<"You Entered The Room"<<endl;
+        return true;
+    }
+    else
+    {
+        std::cout<<"Yo Dog Meat!!!!"<<endl;
+        return false;
+    }
+    
+    
+    
+    
+}
+
+
+int main()
+{
+    srand(time(NULL));
+    
+    int RoomNumber = 1;
+    int const LastRoom = 3;
+    
+    while (RoomNumber <= LastRoom)//Until we reach the final room
+    {
+        bool bLevelComplete = PlayGame(RoomNumber);
+        cin.clear();
+        cin.ignore();
+        
+        if (bLevelComplete)
+        {
+            ++RoomNumber;
+        }
+        
+    }
+    cout<<"Pull the damn trigger......!!!!!! Target's Dead"<<endl;
+    cout<<"Now go home";
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+    return 0;
+}
